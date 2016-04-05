@@ -1,7 +1,7 @@
 Django Phaxio
 -------------
 
-.. automodule:: phaxio
+.. automodule:: django_phaxio
     :members:
     :undoc-members:
     :show-inheritance:

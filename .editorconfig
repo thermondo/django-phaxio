@@ -17,7 +17,7 @@ multi_line_output = 5
 line_length = 79
 combine_as_imports = true
 skip = wsgi.py,docs,.tox,env
-known_first_party = phaxio,tests
+known_first_party = django_phaxio,tests
 known_third_party = django
 
 

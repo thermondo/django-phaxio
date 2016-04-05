@@ -13,7 +13,7 @@ def read(file_name):
     return codecs.open(file_path, encoding='utf-8').read()
 
 
-PACKAGE = "phaxio"
+PACKAGE = "django_phaxio"
 NAME = "django-phaxio"
 DESCRIPTION = __import__(PACKAGE).__doc__
 AUTHOR = "Thermondo GmbH"
@@ -48,6 +48,8 @@ setup(
         "Framework :: Django :: 1.8",
         "Framework :: Django :: 1.9",
     ],
-    install_requires=[],
+    install_requires=[
+        'django-appconf>=1.0.1',
+    ],
     zip_safe=False,
 )

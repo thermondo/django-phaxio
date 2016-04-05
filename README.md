@@ -7,15 +7,33 @@
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Thermondo/django-phaxio?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # Django Phaxio
-API wrapper and WebHooks for [Phaxio].
+Django WebHooks for [Phaxio] callbacks.
 
 ## Installation
 
 Simply install the latest stable package using the command
 
-`pip install django-phaxio`
+```shell
+pip install django-phaxio
+```
 
-and add `'phaxio',` to `INSTALLED_APP`s in your settings.py, that's it!
+add `'django_phaxio',` to `INSTALLED_APP`s in your settings.py
+
+and add
+
+```python
+url(r'^phaxio/', include('django_phaxio.urls', namespace='phaxio')),
+```
+
+to your ``urlpatterns`` in your URL root configuration.
+
+You will also need to set the [Phaxio] callback token for security.
+
+`PHAXIO_CALLBACK_TOKEN` (required):
+
+Callback token provided by Phaxio to verify the request origin.
+
+See https://www.phaxio.com/docs/security/callbacks
 
 ## Documentation
 The latest documentation can be found at [Read the Docs](http://django-phaxio.rtfd.org/).

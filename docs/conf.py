@@ -75,9 +75,9 @@ copyright = '%s, Thermondo GmbH' % year
 
 
 def get_version():
-    import phaxio
+    import django_phaxio
 
-    return phaxio.__version__
+    return django_phaxio.__version__
 
 
 version = get_version()

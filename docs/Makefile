@@ -42,7 +42,7 @@ clean:
 	-rm -rf $(BUILDDIR)/*
 
 apidoc:
-	sphinx-apidoc --separate --force --module-first -H "Django Phxio"  -o . ../phaxio/ ../**/migrations
+	sphinx-apidoc --separate --force --module-first -H "Django Phxio"  -o . ../django_phaxio/ ../**/migrations
 
 html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html

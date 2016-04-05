@@ -11,3 +11,4 @@ sphinxcontrib-spelling
 pyenchant
 pip-tools
 tox
+pytest-capturelog

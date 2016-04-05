@@ -16,7 +16,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.staticfiles',
 
-    'phaxio',
+    'django_phaxio',
 
     'tests.testapp',
 )
@@ -57,3 +57,5 @@ TEMPLATES = [
 SECRET_KEY = '123456'
 
 USE_L10N = True
+
+PHAXIO_CALLBACK_TOKEN = '0123456789'
