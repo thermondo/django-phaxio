@@ -1,4 +1,5 @@
 -e .
+Django
 flake8
 pep8-naming
 mccabe
