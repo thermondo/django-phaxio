@@ -17,12 +17,12 @@ isort==4.2.5
 Jinja2==2.8               # via sphinx
 MarkupSafe==0.23          # via jinja2
 mccabe==0.4.0
-pep257==0.7.0
 pep8-naming==0.3.3
 pep8==1.7.0               # via flake8
 pip-tools==1.6.1
 pluggy==0.3.1             # via tox
 py==1.4.31                # via pytest, pytest-capturelog, tox
+pydocstyle==1.0.0
 pyenchant==1.6.6
 pyflakes==1.1.0           # via flake8
 Pygments==2.1.3           # via sphinx
