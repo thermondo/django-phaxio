@@ -1,42 +1,53 @@
 language: python
 sudo: false
 cache:
-  - apt
-  - pip
+- apt
+- pip
 services:
-  - memcached
+- memcached
 python:
-  - "3.4"
-  - "3.5"
+- '3.4'
+- '3.5'
 addons:
   apt:
     packages:
-      - python3-enchant
-      - graphviz
+    - python3-enchant
+    - graphviz
 env:
   global:
-    - DISPLAY=:99.0
+  - DISPLAY=:99.0
   matrix:
-    - DJANGO="Django<1.9,>=1.8"
-    - DJANGO="Django<1.10,>=1.9"
-    - DJANGO="-e git+https://github.com/django/django.git@master#egg=Django"
+  - DJANGO="Django<1.9,>=1.8"
+  - DJANGO="Django<1.10,>=1.9"
+  - DJANGO="-e git+https://github.com/django/django.git@master#egg=Django"
 matrix:
   fast_finish: true
   allow_failures:
-    - env: DJANGO="-e git+https://github.com/django/django.git@master#egg=Django"
+  - env: DJANGO="-e git+https://github.com/django/django.git@master#egg=Django"
 install:
-  - pip install --upgrade pip
-  - pip install -r requirements-dev.txt
-  - if [[ $TRAVIS_PYTHON_VERSION == 2* ]] || [[ $TRAVIS_PYTHON_VERSION == pypy ]]; then pip install python-memcached; fi
-  - if [[ $TRAVIS_PYTHON_VERSION == 3* ]] || [[ $TRAVIS_PYTHON_VERSION == pypy3 ]]; then pip install python3-memcached; fi
-  - pip install $DJANGO
-  - pip install coveralls
-  - sh -e /etc/init.d/xvfb start
+- pip install --upgrade pip
+- pip install -r requirements-dev.txt
+- if [[ $TRAVIS_PYTHON_VERSION == 2* ]] || [[ $TRAVIS_PYTHON_VERSION == pypy ]]; then
+  pip install python-memcached; fi
+- if [[ $TRAVIS_PYTHON_VERSION == 3* ]] || [[ $TRAVIS_PYTHON_VERSION == pypy3 ]];
+  then pip install python3-memcached; fi
+- pip install $DJANGO
+- pip install coveralls
+- sh -e /etc/init.d/xvfb start
 script:
-  - isort --check-only --recursive --diff .
-  - flake8 --jobs=2 .
-  - pep257 --explain --source --count django_phaxio
-  - (cd docs; make spelling)
-  - coverage run --source=django_phaxio -m py.test
+- isort --check-only --recursive --diff .
+- flake8 --jobs=2 .
+- pep257 --explain --source --count django_phaxio
+- "(cd docs; make spelling)"
+- coverage run --source=django_phaxio -m py.test
 after_success:
-  - coveralls
+- coveralls
+deploy:
+  provider: pypi
+  user: codingjoe
+  password:
+    secure: Pj0mI2NkxEmmVl3Z2jSF5Kts84URZKutbFJ5P9Kh6gKElwo6EbH3cYhRQw3pZaVODq9jXy8yAtDeQ9FSGyiY/4XSpMCINwiDMXyUVvKtgaxYOYcIJdS1tRae83Cc0rCfPKNa8AkZYgxi/pSGapEftEe8YUZPcomfUEzEnD4ZRv0l/vAw2AiP3lqSkitUISoiQoPTTzzJWFCi2R+R1HsRaAhFtsiv4RQufm1SMAqR/qlrMQfHvSqsse766LWH2TxJVO1EP0vyFXJkLIfBndC8NVhw8oV5l0JL35jMAvZjrw+OQ2EaXSuzh2frylhjObX2L/ajJp7ASqFdJkEec+eFv36qWs7t/yBevXVpNkrecXH7aCsY7OHjEdMoOHv9EV3G6mknGbPWp6RTA0nkP4bukfUZdS8eJJ9va0G9MXA5GyZNOg7U/493itKVAs8WjPDMVePgOZmV4FcPPKTYMnL5U2vAYLmMW1ZviCqvC1OKshI8rpzqGPl29IzPukRw3VyocRyF1kPZSp94HOSAp7FcW1U4Or+TaHBlDw7Z2eNZgWiYUS3s2V67xYtgLoA3Zl6jFd9aSs+VZ1EHlKHVWR4TPci96raaHV2tUKT462dneKxwixgoweWr5CPQgzXVfEmjyT3n6iXSq1w4QvNHnX85FUl65wjmUqtsgAhE1K7IqGU=
+  on:
+    tags: true
+    distributions: sdist bdist_wheel
+    repo: Thermondo/django-phaxio
