@@ -5,7 +5,7 @@
 #    pip-compile requirements-dev.in
 #
 -e .
-alabaster==0.7.8          # via sphinx
+alabaster==0.7.9 # via sphinx
 babel==2.3.4              # via sphinx
 click==6.6                # via pip-tools
 django-appconf==1.0.2
