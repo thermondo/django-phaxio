@@ -36,4 +36,4 @@ sphinx-rtd-theme==0.1.9   # via sphinx
 sphinx==1.5.1
 sphinxcontrib-spelling==2.3.0
 tox==2.5.0
-virtualenv==15.0.1        # via tox
+virtualenv==15.1.0 # via tox
