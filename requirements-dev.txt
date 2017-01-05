@@ -9,7 +9,7 @@ alabaster==0.7.8          # via sphinx
 babel==2.3.4              # via sphinx
 click==6.6                # via pip-tools
 django-appconf==1.0.2
-Django==1.9.6
+Django==1.10.5
 docutils==0.12            # via sphinx
 first==2.0.1              # via pip-tools
 flake8==2.5.4
