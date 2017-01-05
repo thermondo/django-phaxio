@@ -10,7 +10,7 @@ babel==2.3.4              # via sphinx
 click==6.6                # via pip-tools
 django-appconf==1.0.2
 Django==1.10.5
-docutils==0.12            # via sphinx
+docutils==0.13.1 # via sphinx
 first==2.0.1              # via pip-tools
 flake8==2.5.4
 isort==4.2.5
