@@ -32,7 +32,7 @@ pytest==3.0.6
 pytz==2016.10 # via babel
 six==1.10.0               # via django-appconf, pip-tools, sphinx, sphinxcontrib-spelling
 snowballstemmer==1.2.1    # via sphinx
-sphinx-rtd-theme==0.2.0   # via sphinx
+sphinx-rtd-theme==0.2.1   # via sphinx
 sphinx==1.5.3
 sphinxcontrib-spelling==2.3.0
 tox==2.6.0
