@@ -21,7 +21,7 @@ pep8-naming==0.4.1
 pep8==1.7.0               # via flake8
 pip-tools==1.8.0
 pluggy==0.4.0 # via tox
-py==1.4.32 # via pytest, pytest-capturelog, tox
+py==1.4.33 # via pytest, pytest-capturelog, tox
 pydocstyle==1.1.1
 pyenchant==1.6.8
 pyflakes==1.1.0           # rq.filter: <1.2.0,>1.2.2
