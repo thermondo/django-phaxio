@@ -65,6 +65,7 @@ class PhaxioCallbackView(View):
 
         Raises:
             PermissionDenied: If provided signature and calculated signature do not match.
+
         """
         try:
             signature = request.META['HTTP_X_PHAXIO_SIGNATURE']
