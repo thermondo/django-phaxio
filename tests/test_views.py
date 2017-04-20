@@ -105,7 +105,8 @@ class TestPhaxioCallbackView(object):
         assert text_type(e).endswith('signal received')
 
     def test_signal_kwargs(self, valid_request):
-        def signal_receiver(sender, direction, fax, is_test, metadata, **kwargs):
+        def signal_receiver(
+                sender, direction, fax, is_test, metadata, **kwargs):
             assert direction == DIRECTION.received
             assert not is_test
             assert fax == fax_data
@@ -128,5 +129,6 @@ class TestPhaxioCallbackView(object):
         request = rf.post(url, data)
         with pytest.raises(PermissionDenied):
             PhaxioCallbackView.as_view()(request)
-        msg = "The request header did not include a signature (X-Phaxio-Signature)."
+        msg = ("The request header did not include a signature "
+               "(X-Phaxio-Signature).")
         assert msg in caplog.text()
