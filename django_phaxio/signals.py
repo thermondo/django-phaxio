@@ -31,7 +31,8 @@ Example::
 
 
     @receiver(phaxio_callback, sender=PhaxioCallbackView)
-    def my_webhook_handler(sender, direction, fax, metadata, is_test, **kwargs):
+    def my_webhook_handler(
+            sender, direction, fax, metadata, is_test, **kwargs):
         # Do something
         pass
 

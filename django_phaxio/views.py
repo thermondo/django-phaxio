@@ -39,7 +39,8 @@ class PhaxioCallbackView(View):
     def dispatch(self, request, *args, **kwargs):
         """Disable CSRF but enable token based security."""
         self.validate_signature(request)
-        return super(PhaxioCallbackView, self).dispatch(request, *args, **kwargs)
+        return super(PhaxioCallbackView, self).dispatch(
+            request, *args, **kwargs)
 
     def post(self, request):
         """Process WebHook and send :func:`.phaxio_callback` signal."""
@@ -64,13 +65,16 @@ class PhaxioCallbackView(View):
         The signature is stored in the header ``X-Phaxio-Signature``.
 
         Raises:
-            PermissionDenied: If provided signature and calculated signature do not match.
+            PermissionDenied: If provided signature and calculated
+            signature do not match.
 
         """
         try:
             signature = request.META['HTTP_X_PHAXIO_SIGNATURE']
         except KeyError:
-            logger.warn('The request header did not include a signature (X-Phaxio-Signature).')
+            logger.warning(
+                'The request header did not include '
+                'a signature (X-Phaxio-Signature).')
             raise PermissionDenied
 
         token = settings.PHAXIO_CALLBACK_TOKEN
@@ -87,10 +91,11 @@ class PhaxioCallbackView(View):
             file_hash = hashlib.sha1()
             file_hash.update(files[filename].read())
             url += '{}{}'.format(filename, file_hash.hexdigest())
-        expected_signature = hmac.new(key=token.encode('utf-8'), msg=url.encode('utf-8'),
-                                      digestmod=hashlib.sha1).hexdigest()
+        expected_signature = hmac.new(
+            key=token.encode('utf-8'), msg=url.encode('utf-8'),
+            digestmod=hashlib.sha1).hexdigest()
         if signature != expected_signature:
-            logger.warn(
+            logger.warning(
                 "Request signature did not match.\n"
                 "Expected signature: %s\n"
                 "Received signature: %s\n",
