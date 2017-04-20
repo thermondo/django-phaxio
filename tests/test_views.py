@@ -74,6 +74,9 @@ class TestPhaxioCallbackView(object):
         assert response.status_code == 200
 
     def test_invalid_signature(self, valid_request, caplog):
+        # Django's QueryDict is immutable, so make a copy first
+        valid_request.POST = valid_request.POST.copy()
+
         valid_request.POST['is_test'] = 'true'
         with pytest.raises(PermissionDenied):
             PhaxioCallbackView.as_view()(valid_request)
