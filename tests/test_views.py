@@ -4,13 +4,19 @@ import json
 
 import pytest
 from django.core.exceptions import PermissionDenied
-from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
 from django.utils.six import BytesIO, text_type
 
 from django_phaxio.signals import phaxio_callback
 from django_phaxio.views import DIRECTION, PhaxioCallbackView
+
 from tests.testapp import settings
+
+try:
+    # Django 1.10+
+    from django.urls import reverse
+except ImportError:
+    from django.core.urlresolvers import reverse
 
 
 def create_valid_signature(url, parameters, files):
