@@ -9,7 +9,6 @@ from django.utils.six import BytesIO, text_type
 
 from django_phaxio.signals import phaxio_callback
 from django_phaxio.views import DIRECTION, PhaxioCallbackView
-
 from tests.testapp import settings
 
 try:
