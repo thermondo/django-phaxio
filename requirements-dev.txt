@@ -22,7 +22,7 @@ pip-tools==1.9.0
 pluggy==0.4.0 # via tox
 py==1.4.34 # via pytest, pytest-capturelog, tox
 pydocstyle==2.0.0
-pyenchant==1.6.10
+pyenchant==1.6.11
 pyflakes==1.1.0           # rq.filter: <1.2.0,>1.2.2
 Pygments==2.2.0           # via sphinx
 pytest-capturelog==0.7
