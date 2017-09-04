@@ -34,5 +34,5 @@ snowballstemmer==1.2.1    # via sphinx
 sphinx-rtd-theme==0.2.4   # via sphinx
 sphinx==1.6.3
 sphinxcontrib-spelling==2.3.0
-tox==2.7.0
+tox==2.8.1
 virtualenv==15.1.0 # via tox
