@@ -17,7 +17,7 @@ Jinja2==2.9.6 # via sphinx
 MarkupSafe==1.0          # via jinja2
 mccabe==0.6.1
 pep8-naming==0.4.1
-pep8==1.7.0               # via flake8
+pep8==1.7.1               # via flake8
 pip-tools==1.10.1
 pluggy==0.5.2 # via tox
 py==1.4.34 # via pytest, pytest-capturelog, tox
