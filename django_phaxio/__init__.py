@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 A Django WebHook handler for Phaxio_.
 

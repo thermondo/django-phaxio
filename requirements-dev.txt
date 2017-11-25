@@ -7,3 +7,4 @@ sphinxcontrib-spelling
 pyenchant
 tox
 pytest-capturelog
+python3-memcached
