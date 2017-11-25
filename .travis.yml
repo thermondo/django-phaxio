@@ -21,16 +21,15 @@ matrix:
   allow_failures:
   - env: DJANGO="-e git+https://github.com/django/django.git@master#egg=Django"
 install:
-- pip install --upgrade pip
+- pip install --upgrade codecov
 - pip install -r requirements-dev.txt
 - pip install $DJANGO
-- pip install coveralls
 script:
 - isort --check-only --recursive --diff .
 - "(cd docs; make spelling)"
 - coverage run --source=django_phaxio -m py.test
 after_success:
-- coveralls
+- codecov
 deploy:
   provider: pypi
   user: codingjoe
