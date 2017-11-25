@@ -74,16 +74,6 @@ master_doc = 'index'
 project = 'Django Phaxio'
 copyright = '%s, Thermondo GmbH' % year
 
-
-def get_version():
-    import django_phaxio
-
-    return django_phaxio.__version__
-
-
-version = get_version()
-release = version
-
 exclude_patterns = ['_build']
 
 pygments_style = 'sphinx'
