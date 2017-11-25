@@ -50,7 +50,7 @@ Please read the `Contributing Guide`_ before you submit a pull request.
    :target: https://pypi.python.org/pypi/django-phaxio/
 .. |ci| image:: https://api.travis-ci.org/Thermondo/django-phaxio.svg?branch=master
    :target: https://travis-ci.org/Thermondo/django-phaxio
-.. |coverage| image:: https://coveralls.io/repos/Thermondo/django-phaxio/badge.svg?branch=master
-   :target: https://coveralls.io/r/Thermondo/django-phaxio
+.. |coverage| image:: https://codecov.io/gh/Thermondo/django-phaxio/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/Thermondo/django-phaxio
 .. |license| image:: https://img.shields.io/badge/license-APL_2-blue.svg
    :target: LICENSE
