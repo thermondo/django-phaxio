@@ -9,5 +9,3 @@ and translates them into
 .. _Phaxio: https://www.phaxio.com/
 
 """
-
-__version__ = "1.0.1"
