@@ -52,5 +52,5 @@ Please read the `Contributing Guide`_ before you submit a pull request.
    :target: https://travis-ci.org/Thermondo/django-phaxio
 .. |coverage| image:: https://coveralls.io/repos/Thermondo/django-phaxio/badge.svg?branch=master
    :target: https://coveralls.io/r/Thermondo/django-phaxio
-.. |license| image:: https://img.shields.io/badge/license-MIT-blue.svg
+.. |license| image:: https://img.shields.io/badge/license-APL_2-blue.svg
    :target: LICENSE
