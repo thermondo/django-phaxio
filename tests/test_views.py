@@ -13,7 +13,6 @@ from django_phaxio.views import DIRECTION, PhaxioCallbackView
 from tests.testapp import settings
 
 
-
 def create_valid_signature(url, parameters, files):
     token = settings.PHAXIO_CALLBACK_TOKEN
     url = "{}{}".format('http://testserver', url)
@@ -48,7 +47,7 @@ fax_data = {
 }
 
 
-@pytest.yield_fixture()
+@pytest.fixture
 def valid_request():
     rf = RequestFactory()
     url = reverse('phaxio:callback')
