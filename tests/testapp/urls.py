@@ -1,5 +1,5 @@
-from django.conf.urls import include, url
+from django.urls import include, path
 
 urlpatterns = [
-    url(r'^phaxio/', include('django_phaxio.urls', namespace='phaxio')),
+    path('phaxio/', include('django_phaxio.urls', namespace='phaxio')),
 ]
