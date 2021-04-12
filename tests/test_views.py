@@ -1,21 +1,17 @@
 import hashlib
 import hmac
 import json
+from io import BytesIO
 
 import pytest
 from django.core.exceptions import PermissionDenied
 from django.test.client import RequestFactory
-from django.utils.six import BytesIO, text_type
+from django.urls import reverse
 
 from django_phaxio.signals import phaxio_callback
 from django_phaxio.views import DIRECTION, PhaxioCallbackView
 from tests.testapp import settings
 
-try:
-    # Django 1.10+
-    from django.urls import reverse
-except ImportError:
-    from django.core.urlresolvers import reverse
 
 
 def create_valid_signature(url, parameters, files):
@@ -87,7 +83,7 @@ class TestPhaxioCallbackView(object):
             PhaxioCallbackView.as_view()(valid_request)
 
         msg = "Request signature did not match."
-        assert msg in caplog.text()
+        assert msg in caplog.text
 
     def test_signal(self, valid_request):
         class TestException(Exception):
@@ -101,7 +97,7 @@ class TestPhaxioCallbackView(object):
         with pytest.raises(TestException) as e:
             PhaxioCallbackView.as_view()(valid_request)
         phaxio_callback.disconnect(signal_receiver)
-        assert text_type(e).endswith('signal received')
+        assert str(e.value).endswith('signal received')
 
     def test_signal_kwargs(self, valid_request):
         def signal_receiver(
@@ -130,4 +126,4 @@ class TestPhaxioCallbackView(object):
             PhaxioCallbackView.as_view()(request)
         msg = ("The request header did not include a signature "
                "(X-Phaxio-Signature).")
-        assert msg in caplog.text()
+        assert msg in caplog.text
