@@ -5,14 +5,7 @@ _`Django signals`: https://docs.djangoproject.com/en/stable/topics/signals/
 """
 from django.dispatch import Signal
 
-phaxio_callback = Signal(
-    providing_args=[
-        'direction',
-        'fax',
-        'metadata',
-        'is_test',
-    ]
-)
+phaxio_callback = Signal()
 """
 Signal that gets send for each Phaxio WebHook.
 

@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.urls import path
 
 from . import views
 
@@ -7,7 +7,9 @@ from . import views
 app_name = 'django_phaxio'
 
 urlpatterns = [
-    url(r'^callback$',
+    path(
+        'callback/',
         views.PhaxioCallbackView.as_view(),
-        name='callback'),
+        name='callback'
+    ),
 ]

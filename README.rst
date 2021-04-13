@@ -20,7 +20,7 @@ and add
 
 .. code:: python
 
-    url(r'^phaxio/', include('django_phaxio.urls', namespace='phaxio')),
+    path('phaxio/', include('django_phaxio.urls', namespace='phaxio')),
 
 to your ``urlpatterns`` in your URL root configuration.
 
@@ -48,8 +48,8 @@ Please read the `Contributing Guide`_ before you submit a pull request.
 
 .. |version| image:: https://img.shields.io/pypi/v/django-phaxio.svg
    :target: https://pypi.python.org/pypi/django-phaxio/
-.. |ci| image:: https://api.travis-ci.org/Thermondo/django-phaxio.svg?branch=master
-   :target: https://travis-ci.org/Thermondo/django-phaxio
+.. |ci| image:: https://github.com/Thermondo/django-phaxio/actions/workflows/ci.yml/badge.svg
+   :target: https://github.com/Thermondo/django-phaxio/actions/workflows/ci.yml
 .. |coverage| image:: https://codecov.io/gh/Thermondo/django-phaxio/branch/master/graph/badge.svg
    :target: https://codecov.io/gh/Thermondo/django-phaxio
 .. |license| image:: https://img.shields.io/badge/license-APL_2-blue.svg

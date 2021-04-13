@@ -1,4 +1,5 @@
 -e .
+coverage
 isort
 pytest
 pytest-django
@@ -6,5 +7,4 @@ sphinx
 sphinxcontrib-spelling
 pyenchant
 tox
-pytest-capturelog
 python3-memcached
