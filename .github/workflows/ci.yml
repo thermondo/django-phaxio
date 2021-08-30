@@ -36,6 +36,6 @@ jobs:
       # the codecov github action needs this package to find the reports
       run: pip install coverage
 
-    - uses: codecov/codecov-action@v1
+    - uses: codecov/codecov-action@v2.0.3
       with:
         fail_ci_if_error: true
