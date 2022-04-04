@@ -11,10 +11,10 @@ Additional settings for Django.
 from appconf import AppConf
 from django.conf import settings  # NoQA
 
-__all__ = ('settings',)
+__all__ = ("settings",)
 
 
 class PhaxioConf(AppConf):
     class Meta:
-        prefix = 'PHAXIO'
-        required = ['CALLBACK_TOKEN']
+        prefix = "PHAXIO"
+        required = ["CALLBACK_TOKEN"]

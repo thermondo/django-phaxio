@@ -15,21 +15,19 @@ from tests.testapp import settings
 
 def create_valid_signature(url, parameters, files):
     token = settings.PHAXIO_CALLBACK_TOKEN
-    url = "{}{}".format('http://testserver', url)
+    url = "{}{}".format("http://testserver", url)
 
     # sort the post fields and add them to the URL
     for key in sorted(parameters.keys()):
-        url += '{}{}'.format(key, parameters[key])
+        url += "{}{}".format(key, parameters[key])
 
     # sort the files and add their SHA1 sums to the URL
     for filename in sorted(files.keys()):
         file_hash = hashlib.sha1()
         file_hash.update(files[filename].read())
-        url += '{}{}'.format(filename, file_hash.hexdigest())
+        url += "{}{}".format(filename, file_hash.hexdigest())
     return hmac.new(
-        key=token.encode('utf-8'),
-        msg=url.encode('utf-8'),
-        digestmod=hashlib.sha1
+        key=token.encode("utf-8"), msg=url.encode("utf-8"), digestmod=hashlib.sha1
     ).hexdigest()
 
 
@@ -50,19 +48,19 @@ fax_data = {
 @pytest.fixture
 def valid_request():
     rf = RequestFactory()
-    url = reverse('phaxio:callback')
+    url = reverse("phaxio:callback")
 
     data = {
-        'direction': DIRECTION.received,
-        'fax': json.dumps(fax_data),
-        'is_test': False,
-        'metadata': 'some data',
+        "direction": DIRECTION.received,
+        "fax": json.dumps(fax_data),
+        "is_test": False,
+        "metadata": "some data",
     }
     with BytesIO() as f:
-        f.write(b'some content')
-        files = {'fax_01.pdf': f}
+        f.write(b"some content")
+        files = {"fax_01.pdf": f}
         valid_signature = create_valid_signature(url, data, files.copy())
-        rf.defaults['HTTP_X_PHAXIO_SIGNATURE'] = valid_signature
+        rf.defaults["HTTP_X_PHAXIO_SIGNATURE"] = valid_signature
         request = rf.post(url, data)
         request.FILES.update(files)
         yield request
@@ -77,7 +75,7 @@ class TestPhaxioCallbackView(object):
         # Django's QueryDict is immutable, so make a copy first
         valid_request.POST = valid_request.POST.copy()
 
-        valid_request.POST['is_test'] = 'true'
+        valid_request.POST["is_test"] = "true"
         with pytest.raises(PermissionDenied):
             PhaxioCallbackView.as_view()(valid_request)
 
@@ -89,22 +87,21 @@ class TestPhaxioCallbackView(object):
             pass
 
         def signal_receiver(sender, **kwargs):
-            raise TestException('signal received')
+            raise TestException("signal received")
 
         phaxio_callback.connect(signal_receiver)
 
         with pytest.raises(TestException) as e:
             PhaxioCallbackView.as_view()(valid_request)
         phaxio_callback.disconnect(signal_receiver)
-        assert str(e.value).endswith('signal received')
+        assert str(e.value).endswith("signal received")
 
     def test_signal_kwargs(self, valid_request):
-        def signal_receiver(
-                sender, direction, fax, is_test, metadata, **kwargs):
+        def signal_receiver(sender, direction, fax, is_test, metadata, **kwargs):
             assert direction == DIRECTION.received
             assert not is_test
             assert fax == fax_data
-            assert metadata == 'some data'
+            assert metadata == "some data"
 
         phaxio_callback.connect(signal_receiver)
         PhaxioCallbackView.as_view()(valid_request)
@@ -112,17 +109,16 @@ class TestPhaxioCallbackView(object):
 
     def test_no_signature(self, caplog):
         rf = RequestFactory()
-        url = reverse('phaxio:callback')
+        url = reverse("phaxio:callback")
 
         data = {
-            'direction': DIRECTION.received,
-            'fax': json.dumps(fax_data),
-            'is_test': False,
-            'metadata': 'some data',
+            "direction": DIRECTION.received,
+            "fax": json.dumps(fax_data),
+            "is_test": False,
+            "metadata": "some data",
         }
         request = rf.post(url, data)
         with pytest.raises(PermissionDenied):
             PhaxioCallbackView.as_view()(request)
-        msg = ("The request header did not include a signature "
-               "(X-Phaxio-Signature).")
+        msg = "The request header did not include a signature " "(X-Phaxio-Signature)."
         assert msg in caplog.text

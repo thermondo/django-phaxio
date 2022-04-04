@@ -1,0 +1,49 @@
+[tool.poetry]
+name = "django-phaxio"
+# just a dummy version
+# will be overwritten from the git tag,
+# see https://github.com/mtkennerly/poetry-dynamic-versioning
+version = "0.0.0"
+description = "A Django WebHook handler for Phaxio."
+authors = ["Thermondo GmbH <opensource@thermondo.de>"]
+repository = "https://github.com/thermondo/django-phaxio"
+readme = "README.rst"
+license = "Apache-2"
+include = ["django_phaxio"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Web Environment",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Framework :: Django",
+]
+keywords = ["django", "phaxio"]
+
+
+[tool.poetry.dependencies]
+python = ">=3.7,<4.0"
+django = ">=3.2.0,<4.1"
+django-appconf = "^1.0.1"
+
+[tool.poetry.dev-dependencies]
+coverage = "^6.3.2"
+codecov = "^2.1.12"
+isort = "^5.10.1"
+pytest = "^7.1.1"
+pytest-django = "^4.5.2"
+Sphinx = "^4.5.0"
+pre-commit = "^2.18.1"
+black = "^22.3.0"
+pydocstyle = "^6.1.1"
+flake8 = "^4.0.1"
+
+[tool.poetry-dynamic-versioning]
+enable = true
+pattern = "^(?P<base>\\d+(\\.\\d+)*)" # tag without `v` prefix
+
+[build-system]
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
+build-backend = "poetry.core.masonry.api"
